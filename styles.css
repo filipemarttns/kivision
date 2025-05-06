@@ -1,10 +1,11 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background-color: #0f0f0f;
+  background-color: #000220; /* Alterado para uma cor de fundo mais elegante e menos opaca */
   color: #f5f5f5;
   line-height: 1.6;
   overflow-x: hidden;
+  transition: background-color 0.3s ease;
 }
 
 .container {
@@ -14,15 +15,16 @@ body {
   padding: 2rem 0;
 }
 
+/* Header - sticky and sliding effect */
 .header {
-  background-color: #111;
-  padding: 1rem 0;
-  border-bottom: 1px solid #222;
+  background-color: rgba(0, 1, 32, 0.842); /* Alterado para ter um fundo semi-transparente */
+  padding: 0.5rem 0;
+  border-bottom: 2px solid rgba(255, 211, 105, 0.4); /* Um toque dourado mais suave */
   position: sticky;
   top: 0;
   z-index: 999;
-  backdrop-filter: blur(10px);
-  animation: slideDown 0.6s ease forwards;
+  backdrop-filter: blur(15px);
+  animation: slideDown 0.6s ease forwards, headerBlur 0.6s ease-in-out;
 }
 
 @keyframes slideDown {
@@ -33,6 +35,15 @@ body {
   100% {
     transform: translateY(0);
     opacity: 1;
+  }
+}
+
+@keyframes headerBlur {
+  0% {
+    backdrop-filter: blur(0);
+  }
+  100% {
+    backdrop-filter: blur(15px);
   }
 }
 
@@ -48,7 +59,7 @@ body {
   margin-left: 2rem;
   font-weight: 500;
   position: relative;
-  transition: color 0.3s;
+  transition: color 0.3s, transform 0.3s ease;
 }
 
 .nav a::after {
@@ -65,17 +76,19 @@ body {
 
 .nav a:hover {
   color: #ffd369;
+  transform: scale(1.1);
 }
 
 .nav a:hover::after {
   width: 100%;
 }
 
+/* Hero Section - fadeUp and text animation */
 .hero {
   text-align: center;
   padding: 4rem 0;
-  background-color: #181818;
-  animation: fadeUp 1s ease-out;
+  background: linear-gradient(135deg, #022141, #001020); /* Um gradiente mais sofisticado para o fundo */
+  animation: fadeUp 1s ease-out, heroTextAnimation 0.6s ease-in-out forwards;
 }
 
 @keyframes fadeUp {
@@ -89,14 +102,26 @@ body {
   }
 }
 
+@keyframes heroTextAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .hero h1 {
-  font-size: 2.5rem;
+  font-size: 3rem; /* Tamanho maior para o título para dar mais impacto */
   margin-bottom: 1rem;
   animation: fadeIn 1s ease forwards;
+  color: #ffd369; /* Dourado para destaque */
 }
 
 .hero p {
-  color: #000000;
+  color: #ecf0f1; /* Cor clara mais suave para o texto */
   margin-bottom: 2rem;
   animation: fadeIn 1.2s ease forwards;
 }
@@ -104,19 +129,21 @@ body {
 .hero button {
   background-color: #f1b119;
   border: none;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
+  padding: 1rem 2rem; /* Botão maior para uma sensação de luxo */
+  font-size: 1.1rem;
   cursor: pointer;
-  border-radius: 4px;
-  color: #000000;
-  transition: transform 0.3s;
+  border-radius: 30px;
+  color: #000;
+  transition: transform 0.3s ease, background-color 0.3s ease;
   animation: fadeIn 1.4s ease forwards;
 }
 
 .hero button:hover {
-  transform: scale(1.05);
+  transform: scale(1.1);
+  background-color: #f5a823; /* Um tom mais dourado e vibrante */
 }
 
+/* Features Section - hover effects with smooth transitions */
 .features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -125,45 +152,49 @@ body {
 }
 
 .feature {
-  background-color: #1f1f1f;
-  padding: 2rem;
-  border-radius: 8px;
-  transition: transform 0.3s, box-shadow 0.3s;
+  background-color: #022141; /* Mais escuro e sofisticado */
+  padding: 2.5rem;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .feature:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 20px rgba(255, 211, 105, 0.1);
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(255, 211, 105, 0.3);
 }
 
+/* Results Section - More subtle fade-in with a hover effect */
 .results {
-  background-color: #141414;
+  background-color: #022141; /* Alterado para mais contraste com o texto */
   text-align: center;
   padding: 4rem 0;
   animation: fadeIn 1s ease forwards;
 }
 
 .results h1 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: 2rem;
+  color: #ffd369; /* Dourado nos títulos */
 }
 
 .results button {
   background-color: #f1b119;
   color: #000;
-  padding: 0.75rem 1.5rem;
+  padding: 1rem 2rem;
   border: none;
-  border-radius: 4px;
-  font-size: 1rem;
+  border-radius: 30px;
+  font-size: 1.1rem;
   margin-bottom: 2rem;
   cursor: pointer;
-  transition: transform 0.3s;
+  transition: transform 0.3s, background-color 0.3s ease;
 }
 
 .results button:hover {
-  transform: scale(1.05);
+  transform: scale(1.1);
+  background-color: #f5a823;
 }
 
+/* Clients Section */
 .clients {
   margin: 2rem 0;
   animation: fadeIn 1.2s ease forwards;
@@ -171,14 +202,16 @@ body {
 
 .client-title {
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
+  color: #f5a823; /* Dourado para mais contraste */
 }
 
 .client-logos {
-  color: #888;
-  font-size: 1rem;
+  color: #ccc;
+  font-size: 1.2rem;
 }
 
+/* Metrics Section */
 .metrics {
   display: flex;
   justify-content: space-around;
@@ -188,36 +221,35 @@ body {
 
 .metric {
   margin: 1rem;
-  transition: transform 0.3s;
+  transition: transform 0.3s ease-in-out;
 }
 
 .metric:hover {
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
-.problem-solution h3 {
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
-}
-
-.problem-solution p {
-  color: #ccc;
-  max-width: 600px;
-  margin: 0 auto;
-  animation: fadeIn 1.5s ease forwards;
-}
-
+/* Footer Section */
 .footer {
-  background-color: #111;
+  background-color: #020220;
   text-align: center;
   padding: 1.5rem 0;
-  border-top: 1px solid #222;
+  border-top: 2px solid #ffd369; /* Dourado na borda do footer */
   color: #777;
   font-size: 0.9rem;
   animation: fadeIn 1.6s ease forwards;
 }
 
-@keyframes fadeIn {
+/* Scroll-based Animations */
+.scroll-fade {
+  opacity: 0;
+  transition: opacity 1s ease-out;
+}
+
+.scroll-focus {
+  animation: scrollBlur 1s ease-out forwards;
+}
+
+@keyframes fadeInOverlay {
   from {
     opacity: 0;
   }
@@ -225,3 +257,19 @@ body {
     opacity: 1;
   }
 }
+
+@keyframes scrollFocusEffect {
+  from {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  to {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+.scroll-focus {
+  animation: scrollFocusEffect 0.8s ease-in-out forwards;
+}
+
