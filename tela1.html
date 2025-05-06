@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projetos Kivision</title>
+  <link rel="stylesheet" href="tela1.css">
+</head>
+<body>
+  <section class="projetos-section">
+    <h1 class="projetos-titulo">Alguns dos nossos projetos públicos</h1>
+    <div class="projetos-container">
+      <div class="projeto" onclick="abrirPopup('p1.png', 'Projeto 1', 'Descrição do projeto 1.')">
+        <img src="p1.png" alt="Projeto 1">
+        <div class="info">
+          <h2>Site simples</h2>
+          <p>Site informativo simples mostrando sobre a empresa..</p>
+        </div>
+      </div>
+      <div class="projeto" onclick="abrirPopup('p2.png', 'Projeto 2', 'Descrição do projeto 2.')">
+        <img src="p2.png" alt="Projeto 2">
+        <div class="info">
+          <h2>Controle de Portaria</h2>
+          <p>Controla todas entradas e saídas da portaria, registro em banco de dados e histórico de movimentações.</p>
+        </div>
+      </div>
+      <div class="projeto" onclick="abrirPopup('p3.png', 'Projeto 3', 'Descrição do projeto 3.')">
+        <img src="p3.png" alt="Projeto 3">
+        <div class="info">
+          <h2>Calculo passagem em escala</h2>
+          <p>Calcula valor, local e retorna rota sobre varias pessoas de uma só vez.</p>
+        </div>
+      </div>
+      <div class="projeto" onclick="abrirPopup('p4.png', 'Projeto 4', 'Descrição do projeto 4.')">
+        <img src="p4.png" alt="Projeto 4">
+        <div class="info">
+          <h2>Linhas online</h2>
+          <p>Mostra trajeto das linhas e horário dos pontos para os funcionários pegarem o fretado.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Botão Voltar abaixo da tela de projetos -->
+  <div class="voltar-container">
+    <button class="voltar-btn" onclick="voltarParaPaginaInicial()">Voltar</button>
+  </div>
+
+  <div class="popup" id="popup">
+    <span class="close" onclick="fecharPopup()">&times;</span>
+    <div class="popup-content">
+      <h2 id="popup-title"></h2>
+      <p id="popup-description"></p>
+      <img src="" alt="Preview do Projeto" id="popup-img">
+    </div>
+  </div>
+
+  <script src="tela1.js"></script>
+</body>
+</html>
