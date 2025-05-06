@@ -148,5 +148,5 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 // Função para voltar para a tela index.html
 function voltarParaPaginaInicial() {
-    window.location.href = "inicio.html"; // Redireciona para o arquivo index.html
+    window.location.href = "index.html"; // Redireciona para o arquivo index.html
 }

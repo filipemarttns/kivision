@@ -87,7 +87,7 @@ const servicos = [
   }
   function voltarPagina() {
     // Isso forçará a recarga da página para garantir que o conteúdo seja atualizado corretamente
-    window.location.href = "inicio.html"; // Navega para index.html
+    window.location.href = "index.html"; // Navega para index.html
   }
   
   
