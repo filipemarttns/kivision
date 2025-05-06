@@ -44,15 +44,23 @@ function fadeInModal(content) {
   });
 }
 
-// Função para abrir canal com especialista
 function falarComEspecialista() {
+
   fadeInModal('<h2 style="font-size: 2rem; font-weight: bold; color:rgb(9, 31, 128);">Conectando com especialista...</h2><p>Você será redirecionado em breve para a sessão exclusiva.</p>');
+
+  setTimeout(() => {
+    window.location.href = "https://wa.me/31991059582";
+  }, 10);
 }
 
-// Função para mostrar resultados com animação sofisticada
 function verResultados() {
   fadeInModal('<h2 style="font-size: 2rem; font-weight: bold; color:rgb(9, 31, 128);">Mostrando resultados reais...</h2><p>Explore nossos cases de sucesso e como podemos transformar o seu negócio.</p>');
+
+  setTimeout(() => {
+    window.location.href = "https://wa.me/31991059582";
+  }, 10);
 }
+
 
 // Animação de carregamento suave para a página
 window.addEventListener('load', () => {
