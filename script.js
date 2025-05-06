@@ -1,6 +1,4 @@
-// script.js
-
-// Função para aplicar o fade-in no conteúdo do modal com animação aprimorada
+// Função para animação de fade no modal
 function fadeInModal(content) {
   const overlay = document.createElement('div');
   overlay.style.position = 'fixed';
@@ -13,21 +11,21 @@ function fadeInModal(content) {
   overlay.style.alignItems = 'center';
   overlay.style.justifyContent = 'center';
   overlay.style.zIndex = 1000;
-  overlay.style.animation = 'fadeInOverlay 0.5s ease-out';
+  overlay.style.animation = 'fadeInOverlay 0.6s ease-in-out'; // Suavizado para transições mais fluídas
 
   const modal = document.createElement('div');
   modal.style.background = '#2a2a2a';
   modal.style.padding = '3rem';
   modal.style.borderRadius = '20px';
   modal.style.color = '#fff';
-  modal.style.boxShadow = '0 15px 50px rgba(0, 0, 0, 0.7)';
-  modal.style.transform = 'translateY(40px)';
+  modal.style.boxShadow = '0 20px 60px rgba(0, 0, 0, 0.7)'; // Sombra mais sutil
+  modal.style.transform = 'translateY(50px)';
   modal.style.opacity = '0';
-  modal.style.transition = 'all 0.5s ease-out';
+  modal.style.transition = 'all 0.6s ease-out'; // Transição mais suave
   modal.style.maxWidth = '650px';
   modal.style.textAlign = 'center';
   modal.innerHTML = content + 
-  '<br><br><button id="closeModal" style="margin-top: 1.5rem; padding: 1rem 2rem; background: linear-gradient(45deg, #ffd369, #f5a823); border: none; color: #000; cursor: pointer; border-radius: 30px; font-size: 1.1rem; transition: transform 0.3s ease-in-out;">Fechar</button>';
+  '<br><br><button id="closeModal" style="margin-top: 1.5rem; padding: 1rem 2rem; background: linear-gradient(45deg,rgb(0, 8, 119),rgb(2, 8, 63)); border: none; color: #000; cursor: pointer; border-radius: 30px; font-size: 1.1rem; transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;">Fechar</button>';
 
   overlay.appendChild(modal);
   document.body.appendChild(overlay);
@@ -41,28 +39,39 @@ function fadeInModal(content) {
   document.getElementById('closeModal').addEventListener('click', () => {
     // Adiciona transição de fade-out ao fechar
     overlay.style.opacity = '0';
-    modal.style.transform = 'translateY(40px)';
-    setTimeout(() => document.body.removeChild(overlay), 500);
+    modal.style.transform = 'translateY(50px)';
+    setTimeout(() => document.body.removeChild(overlay), 600); // Mais suave no fechamento
   });
 }
 
 // Função para abrir canal com especialista
 function falarComEspecialista() {
-  fadeInModal('<h2 style="font-size: 2rem; font-weight: bold; color: #ffd369;">Conectando com especialista...</h2><p>Você será redirecionado em breve para a sessão exclusiva.</p>');
+  fadeInModal('<h2 style="font-size: 2rem; font-weight: bold; color:rgb(9, 31, 128);">Conectando com especialista...</h2><p>Você será redirecionado em breve para a sessão exclusiva.</p>');
 }
 
 // Função para mostrar resultados com animação sofisticada
 function verResultados() {
-  fadeInModal('<h2 style="font-size: 2rem; font-weight: bold; color: #ffd369;">Mostrando resultados reais...</h2><p>Explore nossos cases de sucesso e como podemos transformar o seu negócio.</p>');
+  fadeInModal('<h2 style="font-size: 2rem; font-weight: bold; color:rgb(9, 31, 128);">Mostrando resultados reais...</h2><p>Explore nossos cases de sucesso e como podemos transformar o seu negócio.</p>');
 }
 
 // Animação de carregamento suave para a página
 window.addEventListener('load', () => {
-  document.body.style.opacity = '0';
+  // Garantir que a página carregue com visibilidade total
+  document.body.style.opacity = '1';
   document.body.style.transition = 'opacity 1s ease-out';
+
+  // Garantir que os textos no cabeçalho apareçam de imediato
+  const headerElements = document.querySelectorAll('.header-text');
+  headerElements.forEach((element) => {
+    element.style.opacity = '1';
+    element.style.transition = 'opacity 1s ease-out';
+  });
+
   requestAnimationFrame(() => {
     document.body.style.opacity = '1';
   });
+
+  triggerFadeElements(); // Ativa animações nos elementos visíveis no load
 });
 
 // Função para animar o texto conforme o usuário rola a página
@@ -93,7 +102,7 @@ function isInViewport(element) {
 document.querySelectorAll('button').forEach(button => {
   button.addEventListener('mouseover', () => {
     button.style.transform = 'scale(1.1)';
-    button.style.boxShadow = '0 12px 30px rgba(0, 0, 0, 0.2)';
+    button.style.boxShadow = '0 15px 40px rgba(0, 0, 0, 0.2)'; // Mais suave na sombra
   });
   
   button.addEventListener('mouseout', () => {
@@ -126,7 +135,7 @@ window.addEventListener('scroll', () => {
       const inView = isInViewport(element);
       
       if (inView) {
-        element.style.transitionDelay = `${index * 100}ms`;
+        element.style.transitionDelay = `${index * 150}ms`; // Delay mais suave
         element.classList.add('fadeInOnScroll');
         element.classList.remove('fadeOutOnScroll');
       } else {
@@ -134,10 +143,28 @@ window.addEventListener('scroll', () => {
         element.classList.add('fadeOutOnScroll');
       }
     });
-  }, 50);
+  }, 30); // Delay reduzido para mais fluidez
 });
 
-function isInViewport(element) {
-  const rect = element.getBoundingClientRect();
-  return rect.top <= window.innerHeight * 0.9 && rect.bottom >= 0;
+// Forçar scroll para o topo ao recarregar a página
+window.onbeforeunload = function () {
+  window.scrollTo(0, 0);
+};
+
+// Função para acionar animação para os elementos visíveis no load
+function triggerFadeElements() {
+  const fadeOnScrollElements = document.querySelectorAll('.fade-in-scroll');
+
+  fadeOnScrollElements.forEach((element, index) => {
+    const inView = isInViewport(element);
+
+    if (inView) {
+      element.style.transitionDelay = `${index * 150}ms`; // Delay ajustado para melhorar a fluidez
+      element.classList.add('fadeInOnScroll');
+      element.classList.remove('fadeOutOnScroll');
+    } else {
+      element.classList.remove('fadeInOnScroll');
+      element.classList.add('fadeOutOnScroll');
+    }
+  });
 }

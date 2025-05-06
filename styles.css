@@ -1,8 +1,8 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background-color: #000220; /* Alterado para uma cor de fundo mais elegante e menos opaca */
-  color: #f5f5f5;
+  background-color: #000000; /* Fundo preto */
+  color: #ffffff; /* Texto branco */
   line-height: 1.6;
   overflow-x: hidden;
   transition: background-color 0.3s ease;
@@ -17,9 +17,9 @@ body {
 
 /* Header - sticky and sliding effect */
 .header {
-  background-color: rgba(0, 1, 32, 0.842); /* Alterado para ter um fundo semi-transparente */
-  padding: 0.5rem 0;
-  border-bottom: 2px solid rgba(255, 211, 105, 0.4); /* Um toque dourado mais suave */
+  background-color: rgba(0, 0, 0, 0.85); /* Preto com transparência */
+  padding: 1rem 0;
+  border-bottom: 2px solid rgba(0, 123, 255, 0.6); /* Azul escuro suave */
   position: sticky;
   top: 0;
   z-index: 999;
@@ -67,7 +67,7 @@ body {
   display: block;
   width: 0;
   height: 2px;
-  background: #ffd369;
+  background: #007BFF; /* Azul escuro */
   transition: width 0.3s;
   position: absolute;
   bottom: -5px;
@@ -75,7 +75,7 @@ body {
 }
 
 .nav a:hover {
-  color: #ffd369;
+  color: #007BFF; /* Azul escuro */
   transform: scale(1.1);
 }
 
@@ -87,7 +87,7 @@ body {
 .hero {
   text-align: center;
   padding: 4rem 0;
-  background: linear-gradient(135deg, #022141, #001020); /* Um gradiente mais sofisticado para o fundo */
+  background: linear-gradient(135deg, #000022, #000000); /* Fundo com gradiente escuro */
   animation: fadeUp 1s ease-out, heroTextAnimation 0.6s ease-in-out forwards;
 }
 
@@ -114,33 +114,33 @@ body {
 }
 
 .hero h1 {
-  font-size: 3rem; /* Tamanho maior para o título para dar mais impacto */
+  font-size: 3rem;
   margin-bottom: 1rem;
   animation: fadeIn 1s ease forwards;
-  color: #ffd369; /* Dourado para destaque */
+  color: #007BFF; /* Azul escuro para destaque */
 }
 
 .hero p {
-  color: #ecf0f1; /* Cor clara mais suave para o texto */
+  color: #ecf0f1;
   margin-bottom: 2rem;
   animation: fadeIn 1.2s ease forwards;
 }
 
 .hero button {
-  background-color: #f1b119;
+  background-color: #0056b3; /* Azul escuro */
   border: none;
-  padding: 1rem 2rem; /* Botão maior para uma sensação de luxo */
+  padding: 1rem 2rem;
   font-size: 1.1rem;
   cursor: pointer;
   border-radius: 30px;
-  color: #000;
+  color: #fff;
   transition: transform 0.3s ease, background-color 0.3s ease;
   animation: fadeIn 1.4s ease forwards;
 }
 
 .hero button:hover {
   transform: scale(1.1);
-  background-color: #f5a823; /* Um tom mais dourado e vibrante */
+  background-color: #004080; /* Azul mais escuro */
 }
 
 /* Features Section - hover effects with smooth transitions */
@@ -152,7 +152,7 @@ body {
 }
 
 .feature {
-  background-color: #022141; /* Mais escuro e sofisticado */
+  background-color: #1a1a1a; /* Preto com leve tom de cinza */
   padding: 2.5rem;
   border-radius: 10px;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
@@ -160,12 +160,12 @@ body {
 
 .feature:hover {
   transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(255, 211, 105, 0.3);
+  box-shadow: 0 15px 30px rgba(0, 123, 255, 0.3);
 }
 
 /* Results Section - More subtle fade-in with a hover effect */
 .results {
-  background-color: #022141; /* Alterado para mais contraste com o texto */
+  background-color: #1a1a1a;
   text-align: center;
   padding: 4rem 0;
   animation: fadeIn 1s ease forwards;
@@ -174,12 +174,12 @@ body {
 .results h1 {
   font-size: 2.5rem;
   margin-bottom: 2rem;
-  color: #ffd369; /* Dourado nos títulos */
+  color: #007BFF;
 }
 
 .results button {
-  background-color: #f1b119;
-  color: #000;
+  background-color: #0056b3;
+  color: #fff;
   padding: 1rem 2rem;
   border: none;
   border-radius: 30px;
@@ -191,7 +191,7 @@ body {
 
 .results button:hover {
   transform: scale(1.1);
-  background-color: #f5a823;
+  background-color: #004080;
 }
 
 /* Clients Section */
@@ -203,7 +203,7 @@ body {
 .client-title {
   font-weight: bold;
   font-size: 1.4rem;
-  color: #f5a823; /* Dourado para mais contraste */
+  color: #007BFF;
 }
 
 .client-logos {
@@ -233,7 +233,7 @@ body {
   background-color: #020220;
   text-align: center;
   padding: 1.5rem 0;
-  border-top: 2px solid #ffd369; /* Dourado na borda do footer */
+  border-top: 2px solid #007BFF;
   color: #777;
   font-size: 0.9rem;
   animation: fadeIn 1.6s ease forwards;
@@ -288,4 +288,12 @@ body {
 .fadeOutOnScroll {
   opacity: 0;
   transform: translateY(60px) scale(0.96);
+}
+.logo-text {
+  font-size: 2.2rem;
+  font-weight: 700;
+  font-family: 'Orbitron', sans-serif;
+  color: #0f172a;
+  letter-spacing: 6px;
+  text-transform: uppercase;
 }
