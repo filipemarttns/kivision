@@ -65,7 +65,7 @@ window.addEventListener('load', () => {
   });
 });
 
-// Animação de fade nos elementos à medida que o usuário rola a página
+// Função para animar o texto conforme o usuário rola a página
 const fadeElements = document.querySelectorAll('.scroll-fade');
 const focusElements = document.querySelectorAll('.scroll-focus');
 
@@ -116,3 +116,28 @@ document.addEventListener('scroll', () => {
   });
 });
 
+const fadeOnScrollElements = document.querySelectorAll('.fade-in-scroll');
+let scrollTimeout;
+
+window.addEventListener('scroll', () => {
+  clearTimeout(scrollTimeout);
+  scrollTimeout = setTimeout(() => {
+    fadeOnScrollElements.forEach((element, index) => {
+      const inView = isInViewport(element);
+      
+      if (inView) {
+        element.style.transitionDelay = `${index * 100}ms`;
+        element.classList.add('fadeInOnScroll');
+        element.classList.remove('fadeOutOnScroll');
+      } else {
+        element.classList.remove('fadeInOnScroll');
+        element.classList.add('fadeOutOnScroll');
+      }
+    });
+  }, 50);
+});
+
+function isInViewport(element) {
+  const rect = element.getBoundingClientRect();
+  return rect.top <= window.innerHeight * 0.9 && rect.bottom >= 0;
+}
