@@ -237,45 +237,75 @@ body {
     opacity: 1;
 }
 .voltar-container {
-    text-align: center;
-    margin-top: 25px; /* Distância entre a seção de projetos e o botão */
-}
-
-.voltar-btn {
-    padding: 15px 30px; /* Aumenta o tamanho do botão */
-    background-color: #020e3f; /* Azul escuro */
-    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto; /* Centraliza horizontalmente */
+    padding: 10px;
+    width: 100%;
+  }
+  
+  .voltar-btn {
+    background: linear-gradient(135deg, #020a50, #042344);
+    color: #ffffff;
     border: none;
-    border-radius: 8px; /* Bordas mais arredondadas para um visual mais moderno */
-    font-size: 18px; /* Tamanho da fonte aumentado */
-    font-weight: bold; /* Deixa o texto mais forte */
-    text-transform: uppercase; /* Texto em maiúsculas */
+    padding: 18px 80px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 12px;
     cursor: pointer;
-    transition: transform 0.3s ease, background-color 0.3s, box-shadow 0.3s ease;
-    display: inline-block; /* Faz o botão se ajustar ao conteúdo */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombras para um efeito 3D */
-}
-
-.voltar-btn:hover {
-    background-color: #002752; /* Tom mais escuro de azul */
-    transform: translateY(-4px); /* Leve elevação ao passar o mouse */
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* Aumenta a sombra para dar mais profundidade */
-}
-
-.voltar-btn:active {
-    transform: translateY(2px); /* Efeito de pressão quando clicado */
-}
-
-@media (max-width: 768px) {
-    .voltar-btn {
-        font-size: 16px; /* Ajusta o tamanho da fonte em telas menores */
-        padding: 12px 24px; /* Ajusta o tamanho do botão */
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+  }
+  
+  /* Efeito de brilho ao passar o mouse */
+  .voltar-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transition: left 0.75s ease-in-out;
+  }
+  
+  .voltar-btn:hover::before {
+    left: 100%;
+  }
+  
+  /* Hover de luxo com movimento e sombra 3D */
+  .voltar-btn:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+  }
+  
+  @media (max-width: 768px) {
+    .voltar-container {
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      background: none;
+      margin-top: 120px; /* AUMENTA o espaçamento entre o último projeto e o botão */
+      padding-bottom: 40px; /* Espaço inferior também */
+      z-index: 1;
     }
-}
-
-@media (max-width: 480px) {
+  
     .voltar-btn {
-        font-size: 14px; /* Ajusta ainda mais em dispositivos muito pequenos */
-        padding: 10px 20px; /* Reduz o tamanho do botão */
+      width: auto;
+      max-width: 90%;
+      padding: 12px 24px;
+      font-size: 16px;
     }
-}
+  }
+  
+  
