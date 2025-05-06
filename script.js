@@ -1,4 +1,3 @@
-// Função para animação de fade no modal
 function fadeInModal(content) {
   const overlay = document.createElement('div');
   overlay.style.position = 'fixed';
@@ -19,35 +18,33 @@ function fadeInModal(content) {
   modal.style.borderRadius = '20px';
   modal.style.color = '#fff';
   modal.style.boxShadow = '0 20px 60px rgba(0, 0, 0, 0.7)'; // Sombra mais sutil
-  modal.style.transform = 'translateY(50px)';
-  modal.style.opacity = '0';
+  modal.style.transform = 'translateY(0)'; // Corrigido: elimina a animação de movimento
+  modal.style.opacity = '1'; // Aumenta a opacidade para garantir visibilidade imediata
   modal.style.transition = 'all 0.6s ease-out'; // Transição mais suave
   modal.style.maxWidth = '650px';
   modal.style.textAlign = 'center';
   modal.innerHTML = content + 
-  '<br><br><button id="closeModal" style="margin-top: 1.5rem; padding: 1rem 2rem; background: linear-gradient(45deg,rgb(0, 8, 119),rgb(2, 8, 63)); border: none; color: #000; cursor: pointer; border-radius: 30px; font-size: 1.1rem; transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;">Fechar</button>';
+  '<br><br><button id="closeModal" style="margin-top: 1.5rem; padding: 1rem 2rem; background: linear-gradient(45deg,rgb(0, 8, 119),rgb(2, 8, 63)); border: none; color: #000; cursor: pointer; border-radius: 30px; font-size: 1.1rem; transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;">Fechar</button>' +
+  '<br><br><button id="goToServices" style="margin-top: 1.5rem; padding: 1rem 2rem; background: linear-gradient(45deg,rgb(9, 31, 128),rgb(2, 8, 63)); border: none; color: #fff; cursor: pointer; border-radius: 30px; font-size: 1.1rem;">Conheça nossos serviços!</button>';
 
   overlay.appendChild(modal);
   document.body.appendChild(overlay);
 
-  // Animação suave de transição do modal
-  requestAnimationFrame(() => {
-    modal.style.transform = 'translateY(0)';
-    modal.style.opacity = '1';
-  });
+  // Remova o requestAnimationFrame, já que queremos visibilidade imediata
 
   document.getElementById('closeModal').addEventListener('click', () => {
     // Adiciona transição de fade-out ao fechar
     overlay.style.opacity = '0';
-    modal.style.transform = 'translateY(50px)';
-    setTimeout(() => document.body.removeChild(overlay), 600); // Mais suave no fechamento
+    setTimeout(() => document.body.removeChild(overlay), 600); 
+  });
+
+  document.getElementById('goToServices').addEventListener('click', () => {
+    window.location.href = 'tela2.html'; 
   });
 }
 
 function falarComEspecialista() {
-
   fadeInModal('<h2 style="font-size: 2rem; font-weight: bold; color:rgb(9, 31, 128);">Conectando com especialista...</h2><p>Você será redirecionado em breve para a sessão exclusiva.</p>');
-
   setTimeout(() => {
     window.location.href = "https://wa.me/31991059582";
   }, 10);
@@ -61,7 +58,6 @@ function verResultados() {
   }, 10);
 }
 
-
 // Animação de carregamento suave para a página
 window.addEventListener('load', () => {
   // Garantir que a página carregue com visibilidade total
@@ -71,16 +67,24 @@ window.addEventListener('load', () => {
   // Garantir que os textos no cabeçalho apareçam de imediato
   const headerElements = document.querySelectorAll('.header-text');
   headerElements.forEach((element) => {
-    element.style.opacity = '1';
+    element.style.opacity = '1'; // Assegura que os elementos de texto são visíveis ao carregar
     element.style.transition = 'opacity 1s ease-out';
   });
 
+  // Aumenta a visibilidade dos elementos de forma mais geral
+  const visibleElements = document.querySelectorAll('.fade-in-scroll');
+  visibleElements.forEach((element) => {
+    element.classList.add('fadeInOnScroll'); // Aplica a classe que ativa a animação de fade
+  });
+
+  // Remove animações com base no estado de carregamento
   requestAnimationFrame(() => {
     document.body.style.opacity = '1';
   });
 
   triggerFadeElements(); // Ativa animações nos elementos visíveis no load
 });
+
 
 // Função para animar o texto conforme o usuário rola a página
 const fadeElements = document.querySelectorAll('.scroll-fade');

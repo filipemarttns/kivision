@@ -1,0 +1,145 @@
+body {
+    margin: 0;
+    background: #000;
+    color: #fff;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem 5rem;
+}
+
+.titulo-geral {
+    font-size: 2.5rem;
+    color: #00aaff;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.popup-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    animation: fadeIn 0.6s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.popup {
+    background: #111;
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 0 20px rgba(0,123,255,0.2);
+    transform: scale(0.95);
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.popup.show {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.popup h2 {
+    color: #00aaff;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.popup p {
+    color: #ccc;
+    font-size: 0.95rem;
+}
+
+.popup:hover {
+    transform: scale(1.05); /* Aumenta o pop-up */
+    box-shadow: 0 0 30px rgba(0, 123, 255, 0.5); /* Aumenta o brilho */
+    cursor: pointer;
+}
+
+.popup:hover p::after {
+    content: "É PRA MIM?"; /* Texto adicional ao passar o mouse */
+    display: block;
+    font-size: 1rem;
+    color: #00aaff;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Garantir que o botão tenha um estilo apropriado */
+/* Ajusta o botão para ficar mais para baixo */
+.btn-voltar {
+    display: block; /* Torna o link um bloco para que possamos manipular o posicionamento */
+    margin-top: 30px; /* Adiciona margem superior para deslocar o botão para baixo */
+    text-align: center; /* Centraliza o botão */
+  }
+  
+  .btn-voltar button {
+    padding: 10px 30px; /* Ajusta o padding para o botão */
+    background-color: #008CBA; /* Cor do fundo do botão */
+    color: white; /* Cor do texto do botão */
+    border: none; /* Remove a borda do botão */
+    border-radius: 5px; /* Bordas arredondadas */
+    font-size: 16px; /* Tamanho da fonte */
+    cursor: pointer; /* Altera o cursor quando passar sobre o botão */
+    transition: background-color 0.3s ease; /* Efeito de transição */
+  }
+  
+  .btn-voltar button:hover {
+    background-color: #005f73; /* Altera a cor do botão quando passa o mouse */
+  }
+  
+  
+
+.modal-detalhe {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-conteudo {
+    background: #111;
+    border-radius: 20px;
+    padding: 2rem;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(0,123,255,0.3);
+    color: #fff;
+}
+
+.modal-conteudo h2 {
+    color: #00aaff;
+    margin-bottom: 1rem;
+}
+
+.modal-conteudo p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    color: #ccc;
+}
+
+.btn-fechar {
+    margin-top: 1.5rem;
+    padding: 0.8rem 2rem;
+    background: #00aaff;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-fechar:hover {
+    background: #0080cc;
+}
