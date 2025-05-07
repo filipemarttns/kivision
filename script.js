@@ -10,38 +10,40 @@ function fadeInModal(content) {
   overlay.style.alignItems = 'center';
   overlay.style.justifyContent = 'center';
   overlay.style.zIndex = 1000;
-  overlay.style.animation = 'fadeInOverlay 0.6s ease-in-out'; // Suavizado para transições mais fluídas
+  overlay.style.animation = 'fadeInOverlay 0.6s ease-in-out';
 
   const modal = document.createElement('div');
   modal.style.background = '#2a2a2a';
   modal.style.padding = '3rem';
   modal.style.borderRadius = '20px';
   modal.style.color = '#fff';
-  modal.style.boxShadow = '0 20px 60px rgba(0, 0, 0, 0.7)'; // Sombra mais sutil
-  modal.style.transform = 'translateY(0)'; // Corrigido: elimina a animação de movimento
-  modal.style.opacity = '1'; // Aumenta a opacidade para garantir visibilidade imediata
-  modal.style.transition = 'all 0.6s ease-out'; // Transição mais suave
+  modal.style.boxShadow = '0 20px 60px rgba(0, 0, 0, 0.7)';
+  modal.style.transform = 'translateY(0)';
+  modal.style.opacity = '1';
+  modal.style.transition = 'all 0.6s ease-out';
   modal.style.maxWidth = '650px';
   modal.style.textAlign = 'center';
+
   modal.innerHTML = content + 
-  '<br><br><button id="closeModal" style="margin-top: 1.5rem; padding: 1rem 2rem; background: linear-gradient(45deg,rgb(0, 8, 119),rgb(2, 8, 63)); border: none; color: #000; cursor: pointer; border-radius: 30px; font-size: 1.1rem; transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;">Fechar</button>' +
-  '<br><br><button id="goToServices" style="margin-top: 1.5rem; padding: 1rem 2rem; background: linear-gradient(45deg,rgb(9, 31, 128),rgb(2, 8, 63)); border: none; color: #fff; cursor: pointer; border-radius: 30px; font-size: 1.1rem;">Conheça nossos serviços!</button>';
+    '<br><br><button id="closeModal" style="margin-top: 1.5rem; padding: 1rem 2rem; background: linear-gradient(45deg,rgb(0, 8, 119),rgb(2, 8, 63)); border: none; color: #000; cursor: pointer; border-radius: 30px; font-size: 1.1rem; transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;">Fechar</button>' +
+    '<br><br><button id="goToServices" style="margin-top: 1.5rem; padding: 1rem 2rem; background: linear-gradient(45deg,rgb(9, 31, 128),rgb(2, 8, 63)); border: none; color: #fff; cursor: pointer; border-radius: 30px; font-size: 1.1rem;">Conheça nossos serviços!</button>';
 
   overlay.appendChild(modal);
   document.body.appendChild(overlay);
 
-  // Remova o requestAnimationFrame, já que queremos visibilidade imediata
+  // Ativa animações nos elementos visíveis no momento
+  triggerFadeElements();  // <= Chama a função que já está no seu código
 
   document.getElementById('closeModal').addEventListener('click', () => {
-    // Adiciona transição de fade-out ao fechar
     overlay.style.opacity = '0';
-    setTimeout(() => document.body.removeChild(overlay), 600); 
+    setTimeout(() => document.body.removeChild(overlay), 600);
   });
 
   document.getElementById('goToServices').addEventListener('click', () => {
-    window.location.href = 'tela2.html'; 
+    window.location.href = 'tela2.html';
   });
 }
+
 
 function falarComEspecialista() {
   fadeInModal('<h2 style="font-size: 2rem; font-weight: bold; color:rgb(9, 31, 128);">Conectando com especialista...</h2><p>Você será redirecionado em breve para a sessão exclusiva.</p>');
@@ -140,22 +142,29 @@ document.addEventListener('scroll', () => {
 const fadeOnScrollElements = document.querySelectorAll('.fade-in-scroll');
 let scrollTimeout;
 
-window.addEventListener('scroll', () => {
-  clearTimeout(scrollTimeout);
-  scrollTimeout = setTimeout(() => {
-    fadeOnScrollElements.forEach((element, index) => {
-      const inView = isInViewport(element);
-      
-      if (inView) {
-        element.style.transitionDelay = `${index * 150}ms`; // Delay mais suave
-        element.classList.add('fadeInOnScroll');
-        element.classList.remove('fadeOutOnScroll');
-      } else {
-        element.classList.remove('fadeInOnScroll');
-        element.classList.add('fadeOutOnScroll');
-      }
-    });
-  }, 30); // Delay reduzido para mais fluidez
+window.addEventListener('load', () => {
+  document.body.style.opacity = '1';
+  document.body.style.transition = 'opacity 1s ease-out';
+
+  const headerElements = document.querySelectorAll('.header-text');
+  headerElements.forEach((element) => {
+    element.style.opacity = '1';
+    element.style.transition = 'opacity 1s ease-out';
+  });
+
+  const visibleElements = document.querySelectorAll('.fade-in-scroll');
+  visibleElements.forEach((element) => {
+    element.classList.add('fadeInOnScroll');
+  });
+
+  requestAnimationFrame(() => {
+    document.body.style.opacity = '1';
+  });
+
+  // 🔥 AQUI O FIX
+  setTimeout(() => {
+    triggerFadeElements(); // Segunda chamada quando o DOM estiver 100%
+  }, 300);
 });
 
 // Forçar scroll para o topo ao recarregar a página
@@ -185,16 +194,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const inicioLink = document.querySelector('a[href="#inicio"]');
   const modal = document.getElementById('sobre-modal');
 
-  sobreLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    abrirModal();
-  });
+  if (sobreLink && modal) {
+    sobreLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      abrirModal();
+    });
+  }
 
-  inicioLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    fecharModal();
-  });
+  if (inicioLink && modal) {
+    inicioLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      fecharModal();
+    });
+  }
 });
+
 
 function abrirModal() {
   const modal = document.getElementById('sobre-modal');
@@ -214,3 +228,43 @@ function fecharModal() {
     }
   }, 500); // tempo igual ao da animação CSS
 }
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('fadeInOnScroll');
+      entry.target.classList.remove('fadeOutOnScroll');
+    } else {
+      entry.target.classList.remove('fadeInOnScroll');
+      entry.target.classList.add('fadeOutOnScroll');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in-scroll').forEach(el => observer.observe(el));
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Elementos que têm as classes de fade
+  const faders = document.querySelectorAll('.fade-in-scroll, .scroll-fade, .scroll-focus');
+
+  // Opções do Intersection Observer
+  const appearOptions = {
+    threshold: 0.1,  // A partir de 10% de visibilidade, ele vai ativar o efeito
+    rootMargin: "0px 0px -100px 0px"  // Isso faz o efeito ser acionado um pouco antes do elemento entrar na tela
+  };
+
+  // O IntersectionObserver
+  const appearOnScroll = new IntersectionObserver(function (entries, observer) {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;  // Se o elemento não estiver visível, não faz nada
+
+      entry.target.classList.add('fadeInOnScroll');  // Adiciona o efeito quando o elemento entrar na tela
+      entry.target.classList.remove('fadeOutOnScroll');  // Remove o efeito de saída se ele estiver na tela
+      observer.unobserve(entry.target);  // Para de observar o elemento depois que ele entrou na tela
+    });
+  }, appearOptions);
+
+  // Inicializa a observação de todos os elementos
+  faders.forEach(fader => {
+    appearOnScroll.observe(fader);
+  });
+});
