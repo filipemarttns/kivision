@@ -13,19 +13,36 @@
         <span class="logo-text">KIVISION</span>
       </div>
       <nav class="nav">
-        <a href="#">Início</a>
-        <a href="#">Sobre nós</a>
+        <a href="#inicio" id="link-inicio">Início</a>
+        <a href="#sobre-nos" id="link-sobre">Sobre nós</a>
       </nav>
     </div>
   </header>
    
-  <section class="hero">
+  <!-- Seção Home (Início) -->
+  <section id="inicio" class="hero"> <!-- Começa visível -->
     <div class="container">
       <h1 class="scroll-fade">Softwares sob medida.<br>Sites que vendem.</h1>
       <p class="scroll-fade">Você manda o caos, a gente devolve controle.</p>
       <button onclick="falarComEspecialista()" class="scroll-fade">Fale conosco</button>
     </div>
   </section>
+
+  <!-- Modal Sobre Mim -->
+  <div id="sobre-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="fecharModal()">&times;</span>
+      <h2>Sobre Mim</h2>
+      <p>Prazer, eu sou Filipe. Desenvolvedor, criador de soluções e a pessoa por trás da Kivision.</p>
+      <p>Desde sempre fui movido por uma mistura de curiosidade e inconformismo. Não aceito coisas mal feitas, lentas ou complicadas — principalmente na tecnologia.</p>
+      <p>Gosto de criar experiências digitais que façam as pessoas dizerem “uau” — mas sem deixar a eficiência de lado.</p>
+      <p>Meu trabalho une lógica com estética. Código com design. Estratégia com emoção. E tudo isso com um objetivo só:<br>
+      fazer sua empresa crescer, com soluções inteligentes, bonitas e funcionais.</p>
+      <p>Cada projeto que assumo é pessoal. Entro de cabeça nos detalhes, escuto de verdade, e só entrego quando fico orgulhoso do resultado.</p>
+      <p>Se você valoriza excelência visual, clareza, organização e quer alguém que jogue no seu time como parceiro —<br>
+      pode contar comigo.</p>
+    </div>
+  </div>
 
   <section class="features">
     <div class="container features-grid">

@@ -180,3 +180,37 @@ function triggerFadeElements() {
     }
   });
 }
+document.addEventListener('DOMContentLoaded', () => {
+  const sobreLink = document.querySelector('a[href="#sobre-nos"]');
+  const inicioLink = document.querySelector('a[href="#inicio"]');
+  const modal = document.getElementById('sobre-modal');
+
+  sobreLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    abrirModal();
+  });
+
+  inicioLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    fecharModal();
+  });
+});
+
+function abrirModal() {
+  const modal = document.getElementById('sobre-modal');
+  modal.classList.add('modal-show');
+  modal.classList.remove('modal-hide');
+}
+
+function fecharModal() {
+  const modal = document.getElementById('sobre-modal');
+  modal.classList.remove('modal-show');
+  modal.classList.add('modal-hide');
+
+  // Espera o fim da animação pra esconder
+  setTimeout(() => {
+    if (modal.classList.contains('modal-hide')) {
+      modal.style.display = 'none';
+    }
+  }, 500); // tempo igual ao da animação CSS
+}
