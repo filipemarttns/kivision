@@ -228,20 +228,6 @@ function fecharModal() {
     }
   }, 500); // tempo igual ao da animação CSS
 }
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('fadeInOnScroll');
-      entry.target.classList.remove('fadeOutOnScroll');
-    } else {
-      entry.target.classList.remove('fadeInOnScroll');
-      entry.target.classList.add('fadeOutOnScroll');
-    }
-  });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.fade-in-scroll').forEach(el => observer.observe(el));
-
 document.addEventListener("DOMContentLoaded", function () {
   // Elementos que têm as classes de fade
   const faders = document.querySelectorAll('.fade-in-scroll, .scroll-fade, .scroll-focus');
